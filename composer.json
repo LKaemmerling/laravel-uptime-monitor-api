@@ -1,0 +1,43 @@
+{
+    "name": "lkdev/laravel-uptime-monitor-api",
+    "description": "A Restful API for spatie's uptime Monitor",
+    "keywords": [
+        "spatie",
+        "laravel-uptime-monitor"
+    ],
+    "homepage": "https://github.com/LKDevelopment/laravel-uptime-monitor-api",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lukas Kämmerling",
+            "email": "kontakt@lukas-kaemmerling.de",
+            "homepage": "https://lukas-kammerling.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.0",
+        "spatie/laravel-uptime-monitor": "^1.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "0.9.5",
+        "orchestra/testbench": "^3.3.4",
+        "phpunit/phpunit": "^5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "LKDevelopment\\UptimeMonitorAPI\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LKDevelopment\\UptimeMonitorAPI\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+  }
+}

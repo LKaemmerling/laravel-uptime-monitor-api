@@ -1,0 +1,21 @@
+dist: trusty
+
+language: php
+
+php:
+  - 7.0
+  - 7.1
+
+node_js:
+  - "6"
+
+env:
+  matrix:
+    - COMPOSER_FLAGS="--prefer-lowest"
+    - COMPOSER_FLAGS=""
+
+script:
+  - phpunit --coverage-text --coverage-clover=coverage.clover
+
+after_script:
+  - php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover
