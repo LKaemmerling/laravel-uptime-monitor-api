@@ -1,9 +1,10 @@
 # API Addon for Laravel Uptime Monitor
 
-This is an Addon Package for [https://github.com/spatie/laravel-uptime-monitor](Laravel Uptime Monitor from Spatie). It provides an Restful API Interface for interacting with the Uptime Monitor over HTTP.
+This is an Addon Package for [Laravel Uptime Monitor from Spatie](https://github.com/spatie/laravel-uptime-monitor). It provides an Restful API Interface for interacting with the Uptime Monitor over HTTP.
 
 ## Documentation
-At the Moment there is no Documen tation about it. It comes in a few days.
+
+You can find the Documentation [here](http://lk-development.de/docs/laravel-uptime-monitor-api-v1/).
 
 ## Changelog
 
