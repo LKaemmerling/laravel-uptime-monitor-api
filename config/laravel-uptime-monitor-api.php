@@ -1,4 +1,5 @@
 <?php
+
 return [
     'enable' => true,
     'routePrefix' => 'api',
@@ -7,8 +8,6 @@ return [
     'validationRules' => [
         'url' => 'required|url',
         'look_for_string' => 'string',
-        'uptime_check_interval_in_minutes' => 'required|numeric'
-    ]
+        'uptime_check_interval_in_minutes' => 'required|numeric',
+    ],
 ];
-
-
