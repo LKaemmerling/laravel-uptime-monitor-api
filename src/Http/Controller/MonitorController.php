@@ -1,4 +1,5 @@
 <?php
+
 namespace LKDevelopment\UptimeMonitorAPI\Http\Controller;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -38,6 +39,7 @@ class MonitorController extends Controller
             'certificate_check_enabled' => $url->getScheme() === 'https',
             'uptime_check_interval_in_minutes' => $request->get('uptime_check_interval_in_minutes'),
         ]);
+
         return response()->json(['created' => true]);
     }
 
@@ -73,6 +75,7 @@ class MonitorController extends Controller
             'certificate_check_enabled' => $url->getScheme() === 'https',
             'uptime_check_interval_in_minutes' => $request->get('uptime_check_interval_in_minutes'),
         ]);
+
         return response()->json(['updated' => true]);
     }
 
@@ -86,6 +89,7 @@ class MonitorController extends Controller
     {
         $monitor = Monitor::findOrFail($id);
         $monitor->delete();
+
         return response()->json(['deleted' => true]);
     }
 }

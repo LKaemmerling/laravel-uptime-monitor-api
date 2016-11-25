@@ -16,7 +16,7 @@ class MonitorControllerTest extends TestCase
                 'created' => true,
             ])->seeInDatabase('monitors', [
                 'url' => 'http://test.com',
-                'uptime_check_interval_in_minutes' => 5
+                'uptime_check_interval_in_minutes' => 5,
             ]);
     }
 
@@ -25,7 +25,7 @@ class MonitorControllerTest extends TestCase
     {
         $monitor = factory(Monitor::class)->create([
             'url' => 'http://destroy.com',
-            'uptime_check_interval_in_minutes' => 5
+            'uptime_check_interval_in_minutes' => 5,
         ]);
         $this->assertEquals(1, Monitor::where('url', $monitor->url)->count());
         $this->json('DELETE', route('monitor.destroy', ['monitor' => $monitor->id]))
@@ -40,14 +40,14 @@ class MonitorControllerTest extends TestCase
     {
         $monitor = factory(Monitor::class)->create([
             'url' => 'http://notupdated.com',
-            'uptime_check_interval_in_minutes' => 5
+            'uptime_check_interval_in_minutes' => 5,
         ]);
         $this->json('PUT', route('monitor.update', ['monitor' => $monitor->id]), ['url' => 'http://updated.com', 'uptime_check_interval_in_minutes' => 7])
             ->seeJson([
                 'updated' => true,
             ])->seeInDatabase('monitors', [
                 'url' => 'http://updated.com',
-                 'uptime_check_interval_in_minutes' => 7
+                 'uptime_check_interval_in_minutes' => 7,
             ]);
     }
 
@@ -56,7 +56,7 @@ class MonitorControllerTest extends TestCase
     {
         $monitor = factory(Monitor::class)->create([
             'url' => 'http://getFromID.com',
-            'uptime_check_interval_in_minutes' => 5
+            'uptime_check_interval_in_minutes' => 5,
         ]);
         $this->json('GET', route('monitor.show', ['monitor' => $monitor->id]))
             ->seeJsonStructure([
@@ -78,17 +78,16 @@ class MonitorControllerTest extends TestCase
                 'certificate_issuer',
                 'certificate_check_failure_reason',
                 'created_at',
-                'updated_at'
+                'updated_at',
             ]);
     }
 
     /** @test */
-    public
-    function test_monitor_get_all_api_call()
+    public function test_monitor_get_all_api_call()
     {
         factory(Monitor::class)->create([
             'url' => 'https://justOneWithSSL.com',
-            'uptime_check_interval_in_minutes' => 5
+            'uptime_check_interval_in_minutes' => 5,
         ]);
         $this->json('GET', route('monitor.index'))
             ->seeJsonStructure([
@@ -111,8 +110,8 @@ class MonitorControllerTest extends TestCase
                     'certificate_issuer',
                     'certificate_check_failure_reason',
                     'created_at',
-                    'updated_at'
-                ]
+                    'updated_at',
+                ],
             ]);
     }
 }
