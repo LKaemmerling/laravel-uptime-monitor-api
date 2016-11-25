@@ -36,7 +36,7 @@ class MonitorController extends Controller
             'look_for_string' => $request->get('look_for_string') ?? '',
             'uptime_check_method' => $request->has('look_for_string') ? 'get' : 'head',
             'certificate_check_enabled' => $url->getScheme() === 'https',
-            'uptime_check_interval_in_minutes' => config('laravel-uptime-monitor.uptime_check.run_interval_in_minutes'),
+            'uptime_check_interval_in_minutes' => $request->get('uptime_check_interval_in_minutes'),
         ]);
         return response()->json(['created' => true]);
     }

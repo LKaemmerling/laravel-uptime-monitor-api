@@ -10,18 +10,23 @@ class MonitorControllerTest extends TestCase
     /** @test */
     public function test_monitor_create_api_call()
     {
-        $this->json('POST', route('monitor.store'), ['url' => 'http://test.com','uptime_check_interval_in_minutes' => 5])
+        $this->json('POST', route('monitor.store'),
+            ['url' => 'http://test.com', 'uptime_check_interval_in_minutes' => 5])
             ->seeJson([
                 'created' => true,
             ])->seeInDatabase('monitors', [
-                'url' => 'http://test.com'
+                'url' => 'http://test.com',
+                'uptime_check_interval_in_minutes' => 5
             ]);
     }
 
     /** @test */
     public function test_monitor_destroy_api_call()
     {
-        $monitor = factory(Monitor::class)->create(['url' => 'http://destroy.com','uptime_check_interval_in_minutes' => 5]);
+        $monitor = factory(Monitor::class)->create([
+            'url' => 'http://destroy.com',
+            'uptime_check_interval_in_minutes' => 5
+        ]);
         $this->assertEquals(1, Monitor::where('url', $monitor->url)->count());
         $this->json('DELETE', route('monitor.destroy', ['monitor' => $monitor->id]))
             ->seeJson([
@@ -33,19 +38,26 @@ class MonitorControllerTest extends TestCase
     /** @test */
     public function test_monitor_update_api_call()
     {
-        $monitor = factory(Monitor::class)->create(['url' => 'http://notupdated.com','uptime_check_interval_in_minutes' => 5]);
-        $this->json('PUT', route('monitor.update', ['monitor' => $monitor->id]), ['url' => 'http://updated.com'])
+        $monitor = factory(Monitor::class)->create([
+            'url' => 'http://notupdated.com',
+            'uptime_check_interval_in_minutes' => 5
+        ]);
+        $this->json('PUT', route('monitor.update', ['monitor' => $monitor->id]), ['url' => 'http://updated.com', 'uptime_check_interval_in_minutes' => 7])
             ->seeJson([
                 'updated' => true,
             ])->seeInDatabase('monitors', [
-                'url' => 'http://updated.com'
+                'url' => 'http://updated.com',
+                 'uptime_check_interval_in_minutes' => 7
             ]);
     }
 
     /** @test */
     public function test_monitor_get_from_id_api_call()
     {
-        $monitor = factory(Monitor::class)->create(['url' => 'http://getFromID.com','uptime_check_interval_in_minutes' => 5]);
+        $monitor = factory(Monitor::class)->create([
+            'url' => 'http://getFromID.com',
+            'uptime_check_interval_in_minutes' => 5
+        ]);
         $this->json('GET', route('monitor.show', ['monitor' => $monitor->id]))
             ->seeJsonStructure([
                 'id',
@@ -74,7 +86,10 @@ class MonitorControllerTest extends TestCase
     public
     function test_monitor_get_all_api_call()
     {
-        factory(Monitor::class)->create(['url' => 'https://justOneWithSSL.com','uptime_check_interval_in_minutes' => 5]);
+        factory(Monitor::class)->create([
+            'url' => 'https://justOneWithSSL.com',
+            'uptime_check_interval_in_minutes' => 5
+        ]);
         $this->json('GET', route('monitor.index'))
             ->seeJsonStructure([
                 '*' => [
