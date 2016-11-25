@@ -33,7 +33,7 @@ abstract class TestCase extends Orchestra
 
     protected function setUpDatabase()
     {
-        include_once __DIR__ . '/../vendor/spatie/laravel-uptime-monitor/migrations/create_monitors_table.php.stub';
+        include_once __DIR__ . '/../vendor/spatie/laravel-uptime-monitor/database/migrations/create_monitors_table.php.stub';
 
         (new \CreateMonitorsTable())->up();
     }
