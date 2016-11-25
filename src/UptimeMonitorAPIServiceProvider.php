@@ -14,4 +14,12 @@ class UptimeMonitorAPIServiceProvider extends ServiceProvider
             $this->loadRoutesFrom(__DIR__ . '/Http/routes.php');
         }
     }
+
+    /**
+     * Register the application services.
+     */
+    public function register()
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../config/laravel-uptime-monitor-api.php', 'laravel-uptime-monitor-api');
+    }
 }
