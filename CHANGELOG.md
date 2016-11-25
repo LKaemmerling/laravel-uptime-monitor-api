@@ -1,3 +1,6 @@
 # Changelog
 
-Nothing to log yet
+All changes from this Addon will be documented in this file
+
+## 1.0.0 - 2016-11-25
+ - Initial Release

@@ -1,4 +1,4 @@
-# API Package for Laravel Uptime Monitor from spatie
+# API Addon for Laravel Uptime Monitor
 
 This is an Addon Package for [https://github.com/spatie/laravel-uptime-monitor](Laravel Uptime Monitor from Spatie). It provides an Restful API Interface for interacting with the Uptime Monitor over HTTP.
 
