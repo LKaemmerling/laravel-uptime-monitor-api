@@ -2,11 +2,11 @@
 
 namespace LKDevelopment\UptimeMonitorAPI\Http\Controller;
 
-use Illuminate\Foundation\Validation\ValidatesRequests;
+use Spatie\Url\Url;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Spatie\UptimeMonitor\Models\Monitor;
-use Spatie\Url\Url;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class MonitorController extends Controller
 {
