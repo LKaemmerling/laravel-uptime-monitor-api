@@ -3,8 +3,8 @@
 namespace LKDevelopment\UptimeMonitorAPI\Tests;
 
 use Illuminate\Support\Facades\Config;
-use LKDevelopment\UptimeMonitorAPI\UptimeMonitorAPIServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use LKDevelopment\UptimeMonitorAPI\UptimeMonitorAPIServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
