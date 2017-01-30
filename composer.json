@@ -17,13 +17,13 @@
     ],
     "require": {
         "php": "^7.0",
-        "spatie/laravel-uptime-monitor": "^1.0",
-        "illuminate/support": "^5.3.24",
-        "illuminate/database": "^5.3.24"
+        "spatie/laravel-uptime-monitor": "^2.0",
+        "illuminate/support": "^5.4.0",
+        "illuminate/database": "^5.4.0"
     },
     "require-dev": {
         "mockery/mockery": "0.9.5",
-        "orchestra/testbench": "^3.3.4",
+        "orchestra/testbench": "^3.4.0",
         "phpunit/phpunit": "^5.5"
     },
     "autoload": {
