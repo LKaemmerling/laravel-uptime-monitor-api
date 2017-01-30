@@ -2,8 +2,8 @@
 
 namespace LKDevelopment\UptimeMonitorAPI\Tests\API;
 
-use LKDevelopment\UptimeMonitorAPI\Tests\TestCase;
 use Spatie\UptimeMonitor\Models\Monitor;
+use LKDevelopment\UptimeMonitorAPI\Tests\TestCase;
 
 class MonitorControllerTest extends TestCase
 {
