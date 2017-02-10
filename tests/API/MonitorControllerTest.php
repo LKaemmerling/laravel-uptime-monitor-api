@@ -14,10 +14,11 @@ class MonitorControllerTest extends TestCase
             ['url' => 'http://test.com', 'uptime_check_interval_in_minutes' => 5])
             ->assertJson([
                 'created' => true,
-            ])->seeInDatabase('monitors', [
-                'url' => 'http://test.com',
-                'uptime_check_interval_in_minutes' => 5,
             ]);
+        $this->assertDatabaseHas('monitors', [
+            'url' => 'http://test.com',
+            'uptime_check_interval_in_minutes' => 5,
+        ]);
     }
 
     /** @test */
@@ -45,10 +46,11 @@ class MonitorControllerTest extends TestCase
         $this->json('PUT', route('monitor.update', ['monitor' => $monitor->id]), ['url' => 'http://updated.com', 'uptime_check_interval_in_minutes' => 7])
             ->assertJson([
                 'updated' => true,
-            ])->seeInDatabase('monitors', [
-                'url' => 'http://updated.com',
-                'uptime_check_interval_in_minutes' => 7,
             ]);
+        $this->assertDatabaseHas('monitors', [
+            'url' => 'http://updated.com',
+            'uptime_check_interval_in_minutes' => 7,
+        ]);
     }
 
     /** @test */
@@ -60,26 +62,26 @@ class MonitorControllerTest extends TestCase
         ]);
         $response = $this->json('GET', route('monitor.show', ['monitor' => $monitor->id]));
         $response->assertJsonStructure([
-               'id',
-               'url',
-               'uptime_check_enabled',
-               'look_for_string',
-               'uptime_check_interval_in_minutes',
-               'uptime_status',
-               'uptime_check_failure_reason',
-               'uptime_check_times_failed_in_a_row',
-               'uptime_status_last_change_date',
-               'uptime_last_check_date',
-               'uptime_check_failed_event_fired_on_date',
-               'uptime_check_method',
-               'certificate_check_enabled',
-               'certificate_status',
-               'certificate_expiration_date',
-               'certificate_issuer',
-               'certificate_check_failure_reason',
-               'created_at',
-               'updated_at',
-           ]);
+            'id',
+            'url',
+            'uptime_check_enabled',
+            'look_for_string',
+            'uptime_check_interval_in_minutes',
+            'uptime_status',
+            'uptime_check_failure_reason',
+            'uptime_check_times_failed_in_a_row',
+            'uptime_status_last_change_date',
+            'uptime_last_check_date',
+            'uptime_check_failed_event_fired_on_date',
+            'uptime_check_method',
+            'certificate_check_enabled',
+            'certificate_status',
+            'certificate_expiration_date',
+            'certificate_issuer',
+            'certificate_check_failure_reason',
+            'created_at',
+            'updated_at',
+        ]);
     }
 
     /** @test */
@@ -89,29 +91,29 @@ class MonitorControllerTest extends TestCase
             'url' => 'https://justOneWithSSL.com',
             'uptime_check_interval_in_minutes' => 5,
         ]);
-       $response = $this->json('GET', route('monitor.index'));
+        $response = $this->json('GET', route('monitor.index'));
         $response->assertJsonStructure([
-                '*' => [
-                    'id',
-                    'url',
-                    'uptime_check_enabled',
-                    'look_for_string',
-                    'uptime_check_interval_in_minutes',
-                    'uptime_status',
-                    'uptime_check_failure_reason',
-                    'uptime_check_times_failed_in_a_row',
-                    'uptime_status_last_change_date',
-                    'uptime_last_check_date',
-                    'uptime_check_failed_event_fired_on_date',
-                    'uptime_check_method',
-                    'certificate_check_enabled',
-                    'certificate_status',
-                    'certificate_expiration_date',
-                    'certificate_issuer',
-                    'certificate_check_failure_reason',
-                    'created_at',
-                    'updated_at',
-                ],
-            ]);
+            '*' => [
+                'id',
+                'url',
+                'uptime_check_enabled',
+                'look_for_string',
+                'uptime_check_interval_in_minutes',
+                'uptime_status',
+                'uptime_check_failure_reason',
+                'uptime_check_times_failed_in_a_row',
+                'uptime_status_last_change_date',
+                'uptime_last_check_date',
+                'uptime_check_failed_event_fired_on_date',
+                'uptime_check_method',
+                'certificate_check_enabled',
+                'certificate_status',
+                'certificate_expiration_date',
+                'certificate_issuer',
+                'certificate_check_failure_reason',
+                'created_at',
+                'updated_at',
+            ],
+        ]);
     }
 }
