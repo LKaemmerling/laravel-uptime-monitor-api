@@ -60,40 +60,8 @@ class MonitorControllerTest extends TestCase
             'url' => 'http://getFromID.com',
             'uptime_check_interval_in_minutes' => 5,
         ]);
-        $response = $this->json('GET', route('monitor.show', ['monitor' => $monitor->id]));
-        $response->assertJsonStructure([
-            'id',
-            'url',
-            'uptime_check_enabled',
-            'look_for_string',
-            'uptime_check_interval_in_minutes',
-            'uptime_status',
-            'uptime_check_failure_reason',
-            'uptime_check_times_failed_in_a_row',
-            'uptime_status_last_change_date',
-            'uptime_last_check_date',
-            'uptime_check_failed_event_fired_on_date',
-            'uptime_check_method',
-            'certificate_check_enabled',
-            'certificate_status',
-            'certificate_expiration_date',
-            'certificate_issuer',
-            'certificate_check_failure_reason',
-            'created_at',
-            'updated_at',
-        ]);
-    }
-
-    /** @test */
-    public function test_monitor_get_all_api_call()
-    {
-        factory(Monitor::class)->create([
-            'url' => 'https://justOneWithSSL.com',
-            'uptime_check_interval_in_minutes' => 5,
-        ]);
-        $response = $this->json('GET', route('monitor.index'));
-        $response->assertJsonStructure([
-            '*' => [
+        $this->json('GET', route('monitor.show', ['monitor' => $monitor->id]))
+            ->assertJsonStructure([
                 'id',
                 'url',
                 'uptime_check_enabled',
@@ -113,7 +81,39 @@ class MonitorControllerTest extends TestCase
                 'certificate_check_failure_reason',
                 'created_at',
                 'updated_at',
-            ],
+            ]);
+    }
+
+    /** @test */
+    public function test_monitor_get_all_api_call()
+    {
+        factory(Monitor::class)->create([
+            'url' => 'https://justOneWithSSL.com',
+            'uptime_check_interval_in_minutes' => 5,
         ]);
+        $this->json('GET', route('monitor.index'))
+            ->assertJsonStructure([
+                '*' => [
+                    'id',
+                    'url',
+                    'uptime_check_enabled',
+                    'look_for_string',
+                    'uptime_check_interval_in_minutes',
+                    'uptime_status',
+                    'uptime_check_failure_reason',
+                    'uptime_check_times_failed_in_a_row',
+                    'uptime_status_last_change_date',
+                    'uptime_last_check_date',
+                    'uptime_check_failed_event_fired_on_date',
+                    'uptime_check_method',
+                    'certificate_check_enabled',
+                    'certificate_status',
+                    'certificate_expiration_date',
+                    'certificate_issuer',
+                    'certificate_check_failure_reason',
+                    'created_at',
+                    'updated_at',
+                ],
+            ]);
     }
 }
