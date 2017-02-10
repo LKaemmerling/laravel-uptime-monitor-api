@@ -12,12 +12,13 @@ class MonitorControllerTest extends TestCase
     {
         $this->json('POST', route('monitor.store'),
             ['url' => 'http://test.com', 'uptime_check_interval_in_minutes' => 5])
-            ->seeJson([
+            ->assertJson([
                 'created' => true,
-            ])->seeInDatabase('monitors', [
-                'url' => 'http://test.com',
-                'uptime_check_interval_in_minutes' => 5,
             ]);
+        $this->assertDatabaseHas('monitors', [
+            'url' => 'http://test.com',
+            'uptime_check_interval_in_minutes' => 5,
+        ]);
     }
 
     /** @test */
@@ -29,7 +30,7 @@ class MonitorControllerTest extends TestCase
         ]);
         $this->assertEquals(1, Monitor::where('url', $monitor->url)->count());
         $this->json('DELETE', route('monitor.destroy', ['monitor' => $monitor->id]))
-            ->seeJson([
+            ->assertJson([
                 'deleted' => true,
             ]);
         $this->assertEquals(0, Monitor::where('url', $monitor->url)->count());
@@ -43,12 +44,13 @@ class MonitorControllerTest extends TestCase
             'uptime_check_interval_in_minutes' => 5,
         ]);
         $this->json('PUT', route('monitor.update', ['monitor' => $monitor->id]), ['url' => 'http://updated.com', 'uptime_check_interval_in_minutes' => 7])
-            ->seeJson([
+            ->assertJson([
                 'updated' => true,
-            ])->seeInDatabase('monitors', [
-                'url' => 'http://updated.com',
-                 'uptime_check_interval_in_minutes' => 7,
             ]);
+        $this->assertDatabaseHas('monitors', [
+            'url' => 'http://updated.com',
+            'uptime_check_interval_in_minutes' => 7,
+        ]);
     }
 
     /** @test */
@@ -59,7 +61,7 @@ class MonitorControllerTest extends TestCase
             'uptime_check_interval_in_minutes' => 5,
         ]);
         $this->json('GET', route('monitor.show', ['monitor' => $monitor->id]))
-            ->seeJsonStructure([
+            ->assertJsonStructure([
                 'id',
                 'url',
                 'uptime_check_enabled',
@@ -90,7 +92,7 @@ class MonitorControllerTest extends TestCase
             'uptime_check_interval_in_minutes' => 5,
         ]);
         $this->json('GET', route('monitor.index'))
-            ->seeJsonStructure([
+            ->assertJsonStructure([
                 '*' => [
                     'id',
                     'url',
