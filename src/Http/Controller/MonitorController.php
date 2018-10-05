@@ -23,6 +23,16 @@ class MonitorController extends Controller
     }
 
     /**
+     * Count a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function count()
+    {
+        return response()->json(['count' => Monitor::count()]);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
