@@ -92,4 +92,32 @@ class MonitorController extends Controller
 
         return response()->json(['deleted' => true]);
     }
+
+    /**
+     * Enables a monitor.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function enable($id)
+    {
+        $monitor = Monitor::findOrFail($id);
+        $monitor->enable();
+
+        return response()->json(['enabled' => true]);
+    }
+
+    /**
+     * Disables a monitor.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function disable($id)
+    {
+        $monitor = Monitor::findOrFail($id);
+        $monitor->disable();
+
+        return response()->json(['disabled' => true]);
+    }
 }
