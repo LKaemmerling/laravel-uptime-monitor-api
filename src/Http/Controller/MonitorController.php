@@ -99,7 +99,8 @@ class MonitorController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function enable($id){
+    public function enable($id)
+    {
         $monitor = Monitor::findOrFail($id);
         $monitor->enable();
 
@@ -112,7 +113,8 @@ class MonitorController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function disable($id){
+    public function disable($id)
+    {
         $monitor = Monitor::findOrFail($id);
         $monitor->disable();
 
